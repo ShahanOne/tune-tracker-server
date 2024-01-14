@@ -77,7 +77,7 @@ app.post('/addSong', async (req, res) => {
 });
 
 app.get('/getArtistSongs/:artist', async (req, res) => {
-  const artist = req.params.param;
+  const artist = req.params.artist;
   let theArtist = await Artist.findOne({ name: artist });
   Song.find({ artist: theArtist }).then((foundSongs) => {
     res.send(foundSongs);
@@ -85,8 +85,8 @@ app.get('/getArtistSongs/:artist', async (req, res) => {
 });
 
 app.get('/getSongData/:song', async (req, res) => {
-  const song = req.params.param;
-  let theSong = await Song.findOne({ name: song });
+  const song = req.params.song;
+  let theSong = await Song.findOne({ title: song });
   res.send(theSong);
 });
 const port = process.env.PORT || 3001;
